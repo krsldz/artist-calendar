@@ -1,7 +1,9 @@
 require('dotenv').config();
 const express = require('express');
 const next = require('next');
-// const serverConfig = require('./config/serverConfig');
+
+const authenticateToken = require('./middleware/auth');
+const serverConfig = require('./config/serverConfig');
 
 const artist = require('./routes/artist.routes');
 const auth = require('./routes/auth.routes');
@@ -16,12 +18,12 @@ app.prepare()
   .then(() => {
     const server = express();
 
-    // serverConfig(server);
+    serverConfig(server);
 
     server.use('/artist', artist);
     server.use('/auth', auth);
 
-    server.get('/main', (req, res) => {
+    server.get('/main', authenticateToken, (req, res) => {
       app.render(req, res, '/main');
     });
 
