@@ -1,7 +1,9 @@
 const router = require('express').Router();
 const { Artist } = require('../db/models/index');
 
-router.route('/').get(async (req, res) => {
+const authenticateToken = require('../middleware/auth');
+
+router.route('/').get(authenticateToken, async (req, res) => {
   try {
     const list = await Artist.findAll({
       where: {
