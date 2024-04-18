@@ -14,7 +14,8 @@ const handle = app.getRequestHandler();
 
 const PORT = process.env.PORT ?? 4001;
 
-app.prepare()
+app
+  .prepare()
   .then(() => {
     const server = express();
 

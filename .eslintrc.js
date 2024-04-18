@@ -5,7 +5,7 @@ module.exports = {
     es2021: true,
     node: true,
   },
-  extends: 'airbnb-base',
+  extends: ['next', "prettier", 'airbnb-base'],
   overrides: [
     {
       env: {
@@ -19,14 +19,8 @@ module.exports = {
       },
     },
   ],
-  parser: '@babel/eslint-parser',
   parserOptions: {
-    ecmaVersion: 2018,
-    requireConfigFile: false,
-    sourceType: 'module',
-    babelOptions: {
-      presets: ['@babel/preset-react'],
-    },
+    ecmaVersion: 'latest',
   },
   rules: {
   },

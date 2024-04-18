@@ -1,14 +1,14 @@
 import { useRouter } from 'next/router';
-import AuthForm from '../components/AuthForm';
+import { AuthForm } from '../features';
 
-const Login = () => {
+const Register = () => {
   const router = useRouter();
 
   const handleSubmitForm = async (event) => {
     event.preventDefault();
     try {
       const formData = Object.fromEntries(new FormData(event.target));
-      const req = await fetch('/auth/login', {
+      const req = await fetch('/auth/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
@@ -22,9 +22,7 @@ const Login = () => {
     }
   };
 
-  return (
-    <AuthForm onSubmit={handleSubmitForm} title="Sign in" btnText="sign in" />
-  );
+  return <AuthForm onSubmit={handleSubmitForm} title="Sign up" btnText="sign up" />;
 };
 
-export default Login;
+export default Register;

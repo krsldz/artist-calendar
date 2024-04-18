@@ -3,7 +3,8 @@ const jwt = require('jsonwebtoken');
 
 function authenticateToken(req, res, next) {
   const { accessToken, refreshToken } = req.cookies;
-  if (!accessToken && !refreshToken) return res.status(401).json({ error: 'Access denied' });
+  if (!accessToken && !refreshToken)
+    return res.status(401).json({ error: 'Access denied' });
 
   try {
     const decoded = jwt.verify(accessToken, process.env.TOKEN_ACCESS_SECRET);
