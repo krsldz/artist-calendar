@@ -4,6 +4,7 @@ module.exports = {
       '/main': { page: '/main' },
       '/auth': { page: '/register' },
       '/login': { page: '/login' },
+      '/profile': { page: '/profile' },
     };
   },
 };
