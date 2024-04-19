@@ -22,7 +22,7 @@ const Register = () => {
     }
   };
 
-  return <AuthForm onSubmit={handleSubmitForm} title="Sign up" btnText="sign up" />;
+  return <AuthForm onSubmit={handleSubmitForm} title="Sign up" btnText="Sign up" />;
 };
 
 export default Register;

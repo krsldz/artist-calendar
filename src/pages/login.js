@@ -22,7 +22,7 @@ const Login = () => {
     }
   };
 
-  return <AuthForm onSubmit={handleSubmitForm} title="Sign in" btnText="sign in" />;
+  return <AuthForm onSubmit={handleSubmitForm} title="Sign in" btnText="Sign in" />;
 };
 
 export default Login;

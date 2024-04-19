@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Typography from './Typography';
 
 const Card = ({ artist }) => {
   if (!artist) return null;
@@ -11,7 +12,7 @@ const Card = ({ artist }) => {
         alt={artist.name}
         className="rounded-full w-52 h-52 hover:border-8 hover:border-primary hover:cursor-pointer"
       />
-      <span className="text-lg font-semibold mt-2 text-white">{artist.name}</span>
+      <Typography text={artist.name} />
     </div>
   );
 };
