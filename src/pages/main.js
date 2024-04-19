@@ -23,11 +23,8 @@ const Main = () => {
     <>
       <SearchBar placeholder="Search for your favorite artist" />
       <div className="h-60 mx-4 my-8 p-4 border-2 rounded-lg border-accent">
-        <Typography className="text-accent" text="Welcome to Artist Calendar," />
-        <Typography
-          className="relative w-[max-content] font-mono text-accent before:absolute before:inset-0 before:bg-main before:animate-typewriter"
-          text="Kristina"
-        />
+        <Typography type="secondary" text="Welcome to Artist Calendar," />
+        <Typography type="typing" text="Kristina" />
       </div>
       <ArtistSelectBar
         artists={[
