@@ -8,7 +8,7 @@ function authenticateToken(req, res, next) {
 
   try {
     const decoded = jwt.verify(accessToken, process.env.TOKEN_ACCESS_SECRET);
-    req.user = decoded.user;
+    req.user = decoded;
     next();
   } catch (error) {
     if (!refreshToken) {
@@ -16,7 +16,7 @@ function authenticateToken(req, res, next) {
     }
     try {
       const decodedRefresh = jwt.verify(refreshToken, process.env.TOKEN_REFRESH_SECRET);
-      req.user = decodedRefresh.user;
+      req.user = decodedRefresh;
       next();
     } catch (err) {
       return res.status(400).json({ error: 'Invalid Token' });
