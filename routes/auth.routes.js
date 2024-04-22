@@ -2,7 +2,11 @@ const router = require('express').Router();
 const bcrypt = require('bcrypt');
 const { User, Blacklist } = require('../db/models/index');
 
-const { generateAccessToken, generateRefreshToken, generateUsername } = require('../utils/auth');
+const {
+  generateAccessToken,
+  generateRefreshToken,
+  generateUsername,
+} = require('../utils/auth');
 
 router.route('/register').post(async (req, res) => {
   try {
@@ -15,8 +19,8 @@ router.route('/register').post(async (req, res) => {
     const hash = await bcrypt.hash(password, saltRounds);
     const newUser = await User.create({ email, username, password: hash });
     if (newUser.id) {
-      const accessToken = generateAccessToken({ username: newUser.username });
-      const refreshToken = generateRefreshToken({ username: newUser.username });
+      const accessToken = generateAccessToken({ userId: newUser.id });
+      const refreshToken = generateRefreshToken({ userId: newUser.id });
       res
         .cookie('refreshToken', refreshToken, { httpOnly: true, sameSite: 'strict' })
         .cookie('accessToken', accessToken, { httpOnly: true, sameSite: 'strict' });
@@ -38,8 +42,8 @@ router.route('/login').post(async (req, res) => {
     if (user.id) {
       const isSame = await bcrypt.compare(password, user.password);
       if (isSame) {
-        const accessToken = generateAccessToken({ username: user.username });
-        const refreshToken = generateRefreshToken({ username: user.username });
+        const accessToken = generateAccessToken({ userId: user.id });
+        const refreshToken = generateRefreshToken({ userId: user.id });
         res
           .cookie('refreshToken', refreshToken, { httpOnly: true, sameSite: 'strict' })
           .cookie('accessToken', accessToken, { httpOnly: true, sameSite: 'strict' });

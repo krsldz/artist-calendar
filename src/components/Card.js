@@ -6,6 +6,7 @@ const Card = ({ artist }) => {
   return (
     <div className="flex flex-col justify-center items-center p-2.5">
       <Image
+        priority
         src={artist.img}
         width={208}
         height={208}

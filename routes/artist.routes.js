@@ -5,10 +5,10 @@ const authenticateToken = require('../middleware/auth');
 
 router.route('/').get(authenticateToken, async (req, res) => {
   try {
+    const { userId } = req.user;
     const list = await Artist.findAll({
       where: {
-        // TODO: add user from session
-        user_id: 1,
+        user_id: userId,
       },
     });
     if (list) {
